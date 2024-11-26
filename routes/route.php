@@ -1,14 +1,8 @@
-<?php
+<?php 
+$route = new Router();
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+$route->get('/about',['./controller/about.controller.php','index']);
+$route->get('/',['./controller/home.controller.php','index']);
+$route->get('/contact',['./controller/contacts.controller.php','index']);
+$route->post('/contact',['./controller/contacts.controller.php','create']);
 
-$routes = [
-    '/'=> "./controller/HomeController.php",
-    '/about'=> "./controller/AboutController.php"
-];
-
-if(array_key_exists($uri,$routes)){
-    require $routes[$uri];
-}else{
-    echo "Page Not Found";
-}
